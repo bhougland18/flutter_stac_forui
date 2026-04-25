@@ -1,0 +1,27 @@
+.direnv/
+.envrc.local
+result
+result-*
+
+# Flutter/Dart
+.dart_tool/
+.packages
+.pub-cache/
+.pub/
+build/
+ios/Flutter/Generated.xcconfig
+ios/Flutter/flutter_export_environment.sh
+ios/Flutter/Flutter.podspec
+ios/Flutter/Generated.framework
+ios/Flutter/App.framework
+ios/Flutter/flutter_assets
+ios/Flutter/flutter_service_worker.js
+pubspec.lock
+
+# Beads
+.beads/*.db
+.beads/*.lock
+
+# Jujutsu
+.jj/
+.cache/
