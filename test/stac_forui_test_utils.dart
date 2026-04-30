@@ -31,3 +31,21 @@ class TestStacApp extends StatelessWidget {
     );
   }
 }
+
+class MockActionParser extends StacActionParser<MockActionModel> {
+  final VoidCallback onCallAction;
+
+  MockActionParser(this.onCallAction);
+
+  @override
+  String get actionType => 'mock_action';
+
+  @override
+  MockActionModel getModel(Map<String, dynamic> json) => MockActionModel();
+
+  @override
+  void onCall(BuildContext context, MockActionModel model) => onCallAction();
+}
+
+class MockActionModel {}
+
