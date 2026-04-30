@@ -25,6 +25,15 @@ Map<String, dynamic> _$StacForuiThemeToJson(StacForuiTheme instance) =>
 
 StacForuiColors _$StacForuiColorsFromJson(Map<String, dynamic> json) =>
     StacForuiColors(
+      brightness:
+          $enumDecodeNullable(
+            _$StacForuiBrightnessEnumMap,
+            json['brightness'],
+          ) ??
+          StacForuiBrightness.light,
+      barrier: json['barrier'] as String?,
+      background: json['background'] as String?,
+      foreground: json['foreground'] as String?,
       primary: json['primary'] as String?,
       primaryForeground: json['primaryForeground'] as String?,
       secondary: json['secondary'] as String?,
@@ -35,13 +44,16 @@ StacForuiColors _$StacForuiColorsFromJson(Map<String, dynamic> json) =>
       destructiveForeground: json['destructiveForeground'] as String?,
       error: json['error'] as String?,
       errorForeground: json['errorForeground'] as String?,
-      background: json['background'] as String?,
-      foreground: json['foreground'] as String?,
+      card: json['card'] as String?,
       border: json['border'] as String?,
     );
 
 Map<String, dynamic> _$StacForuiColorsToJson(StacForuiColors instance) =>
     <String, dynamic>{
+      'brightness': _$StacForuiBrightnessEnumMap[instance.brightness]!,
+      'barrier': instance.barrier,
+      'background': instance.background,
+      'foreground': instance.foreground,
       'primary': instance.primary,
       'primaryForeground': instance.primaryForeground,
       'secondary': instance.secondary,
@@ -52,10 +64,14 @@ Map<String, dynamic> _$StacForuiColorsToJson(StacForuiColors instance) =>
       'destructiveForeground': instance.destructiveForeground,
       'error': instance.error,
       'errorForeground': instance.errorForeground,
-      'background': instance.background,
-      'foreground': instance.foreground,
+      'card': instance.card,
       'border': instance.border,
     };
+
+const _$StacForuiBrightnessEnumMap = {
+  StacForuiBrightness.light: 'light',
+  StacForuiBrightness.dark: 'dark',
+};
 
 StacForuiTypography _$StacForuiTypographyFromJson(Map<String, dynamic> json) =>
     StacForuiTypography(fontFamily: json['fontFamily'] as String?);

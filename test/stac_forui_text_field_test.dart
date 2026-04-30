@@ -23,13 +23,8 @@ void main() {
     expect(find.text('johndoe'), findsOneWidget);
     expect(find.text('Enter your username'), findsOneWidget);
 
-    // Verify key is attached via KeyedSubtree (as FTextField does not support it in constructor)
-    final keyedSubtreeFinder = find.ancestor(
-      of: find.byType(FTextField),
-      matching: find.byType(KeyedSubtree),
-    );
-    expect(keyedSubtreeFinder, findsOneWidget);
-    final keyedSubtree = tester.widget<KeyedSubtree>(keyedSubtreeFinder);
-    expect(keyedSubtree.key, const ValueKey('my_text_field_id'));
+    // Verify key is attached directly to FTextField
+    final textField = tester.widget<FTextField>(find.byType(FTextField));
+    expect(textField.key, const ValueKey('my_text_field_id'));
   });
 }

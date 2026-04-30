@@ -5,9 +5,6 @@
     nixpkgs.url = "github:NixOS/nixpkgs?ref=nixos-unstable";
     flake-parts.url = "github:hercules-ci/flake-parts";
     nix-config.url = "path:/home/ben/nix-config";
-    codex.url = "github:openai/codex";
-    gemini-cli.url = "github:sadjow/gemini-cli-nix";
-    claude-code.url = "github:sadjow/claude-code-nix";
   };
 
   outputs =
@@ -15,9 +12,6 @@
       flake-parts,
       nixpkgs,
       nix-config,
-      codex,
-      gemini-cli,
-      claude-code,
       ...
     }:
     flake-parts.lib.mkFlake { inherit inputs; } {
@@ -44,7 +38,7 @@
               description = "STAC forui components development shell";
               packages = [ pkgs.patchelf ];
               features = {
-                ai_tools.enable = lib.mkForce false;
+                ai_tools.enable = lib.mkForce true;
                 beads.enable = lib.mkForce true;
                 direnv.enable = lib.mkForce true;
                 flutter.enable = lib.mkForce true;

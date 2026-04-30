@@ -15,6 +15,7 @@ class StacForuiButton extends StacWidget {
     this.suffixIcon,
     this.onPress,
     this.style = StacForuiButtonStyle.primary,
+    this.size = StacForuiButtonSize.md,
   });
 
   final String? key;
@@ -24,6 +25,7 @@ class StacForuiButton extends StacWidget {
   final Map<String, dynamic>? suffixIcon;
   final Map<String, dynamic>? onPress;
   final StacForuiButtonStyle style;
+  final StacForuiButtonSize size;
 
   factory StacForuiButton.fromJson(Map<String, dynamic> json) =>
       _$StacForuiButtonFromJson(json);
@@ -36,14 +38,32 @@ enum StacForuiButtonStyle {
   primary,
   secondary,
   outline,
-  destructive;
+  destructive,
+  ghost;
 
-  FButtonStyle get toFButtonStyle {
+  FButtonVariant get toFButtonVariant {
     return switch (this) {
-      StacForuiButtonStyle.primary => FButtonStyle.primary,
-      StacForuiButtonStyle.secondary => FButtonStyle.secondary,
-      StacForuiButtonStyle.outline => FButtonStyle.outline,
-      StacForuiButtonStyle.destructive => FButtonStyle.destructive,
+      StacForuiButtonStyle.primary => FButtonVariant.primary,
+      StacForuiButtonStyle.secondary => FButtonVariant.secondary,
+      StacForuiButtonStyle.outline => FButtonVariant.outline,
+      StacForuiButtonStyle.destructive => FButtonVariant.destructive,
+      StacForuiButtonStyle.ghost => FButtonVariant.ghost,
+    };
+  }
+}
+
+enum StacForuiButtonSize {
+  xs,
+  sm,
+  md,
+  lg;
+
+  FButtonSizeVariant get toFButtonSizeVariant {
+    return switch (this) {
+      StacForuiButtonSize.xs => FButtonSizeVariant.xs,
+      StacForuiButtonSize.sm => FButtonSizeVariant.sm,
+      StacForuiButtonSize.md => FButtonSizeVariant.md,
+      StacForuiButtonSize.lg => FButtonSizeVariant.lg,
     };
   }
 }

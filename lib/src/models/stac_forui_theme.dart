@@ -1,3 +1,4 @@
+import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:forui/forui.dart';
 import 'package:json_annotation/json_annotation.dart';
@@ -28,6 +29,10 @@ class StacForuiTheme extends StacWidget {
 @JsonSerializable()
 class StacForuiColors {
   const StacForuiColors({
+    this.brightness = StacForuiBrightness.light,
+    this.barrier,
+    this.background,
+    this.foreground,
     this.primary,
     this.primaryForeground,
     this.secondary,
@@ -38,11 +43,14 @@ class StacForuiColors {
     this.destructiveForeground,
     this.error,
     this.errorForeground,
-    this.background,
-    this.foreground,
+    this.card,
     this.border,
   });
 
+  final StacForuiBrightness brightness;
+  final String? barrier;
+  final String? background;
+  final String? foreground;
   final String? primary;
   final String? primaryForeground;
   final String? secondary;
@@ -53,8 +61,7 @@ class StacForuiColors {
   final String? destructiveForeground;
   final String? error;
   final String? errorForeground;
-  final String? background;
-  final String? foreground;
+  final String? card;
   final String? border;
 
   factory StacForuiColors.fromJson(Map<String, dynamic> json) =>
@@ -62,27 +69,37 @@ class StacForuiColors {
 
   Map<String, dynamic> toJson() => _$StacForuiColorsToJson(this);
 
-  FColorScheme toFColorScheme() {
-    return FColorScheme(
-      brightness: Brightness.light,
-      primary: primary?.toColor() ?? const Color(0xFF000000),
-      primaryForeground:
-          primaryForeground?.toColor() ?? const Color(0xFFFFFFFF),
-      secondary: secondary?.toColor() ?? const Color(0xFFF1F5F9),
-      secondaryForeground:
-          secondaryForeground?.toColor() ?? const Color(0xFF0F172A),
-      muted: muted?.toColor() ?? const Color(0xFFF1F5F9),
-      mutedForeground: mutedForeground?.toColor() ?? const Color(0xFF64748B),
-      destructive: destructive?.toColor() ?? const Color(0xFFEF4444),
-      destructiveForeground:
-          destructiveForeground?.toColor() ?? const Color(0xFFFFFFFF),
-      error: error?.toColor() ?? const Color(0xFFEF4444),
-      errorForeground: errorForeground?.toColor() ?? const Color(0xFFFFFFFF),
-      background: background?.toColor() ?? const Color(0xFFFFFFFF),
-      foreground: foreground?.toColor() ?? const Color(0xFF020817),
-      border: border?.toColor() ?? const Color(0xFFE2E8F0),
+  FColors toFColors() {
+    final base = brightness == StacForuiBrightness.light
+        ? FColors.neutralLight
+        : FColors.neutralDark;
+
+    return base.copyWith(
+      barrier: barrier?.toColor(),
+      background: background?.toColor(),
+      foreground: foreground?.toColor(),
+      primary: primary?.toColor(),
+      primaryForeground: primaryForeground?.toColor(),
+      secondary: secondary?.toColor(),
+      secondaryForeground: secondaryForeground?.toColor(),
+      muted: muted?.toColor(),
+      mutedForeground: mutedForeground?.toColor(),
+      destructive: destructive?.toColor(),
+      destructiveForeground: destructiveForeground?.toColor(),
+      error: error?.toColor(),
+      errorForeground: errorForeground?.toColor(),
+      card: card?.toColor(),
+      border: border?.toColor(),
     );
   }
+}
+
+enum StacForuiBrightness {
+  light,
+  dark;
+
+  Brightness get toBrightness =>
+      this == StacForuiBrightness.light ? Brightness.light : Brightness.dark;
 }
 
 @JsonSerializable()

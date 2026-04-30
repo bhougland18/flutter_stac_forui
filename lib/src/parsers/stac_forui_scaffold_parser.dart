@@ -3,7 +3,6 @@ import 'package:forui/forui.dart';
 import 'package:stac/stac.dart';
 import 'package:stac_forui_components/src/models/stac_forui_scaffold.dart';
 import 'package:stac_forui_components/src/utils/color_utils.dart';
-import 'package:stac_forui_components/src/models/stac_forui_theme.dart'; // Add this for toColor to work if needed, though it's on String
 
 class StacForuiScaffoldParser extends StacParser<StacForuiScaffold> {
   const StacForuiScaffoldParser();
@@ -20,9 +19,15 @@ class StacForuiScaffoldParser extends StacParser<StacForuiScaffold> {
     return FScaffold(
       key: model.key != null ? ValueKey<String>(model.key!) : null,
       header: Stac.fromJson(model.header, context),
-      content: Stac.fromJson(model.content, context) ?? const SizedBox.shrink(),
+      child: Stac.fromJson(model.content, context) ?? const SizedBox.shrink(),
       footer: Stac.fromJson(model.footer, context),
-      style: model.style?.toFScaffoldStyle(context),
+      scaffoldStyle: model.style != null
+          ? FScaffoldStyleDelta.delta(
+              backgroundColor: model.style!.backgroundColor?.toColor(
+                FTheme.of(context).colors.background,
+              ),
+            )
+          : const FScaffoldStyleDelta.context(),
     );
   }
 }

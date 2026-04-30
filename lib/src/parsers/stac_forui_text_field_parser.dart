@@ -15,23 +15,34 @@ class StacForuiTextFieldParser extends StacParser<StacForuiTextField> {
 
   @override
   Widget parse(BuildContext context, StacForuiTextField model) {
-    return KeyedSubtree(
+    final prefix = Stac.fromJson(model.prefix, context);
+    final suffix = Stac.fromJson(model.suffix, context);
+
+    return FTextField(
       key: model.key != null ? ValueKey<String>(model.key!) : null,
-      child: FTextField(
-        label: model.label,
-        help: model.description,
-        hint: model.hint,
-        error: model.error,
-        // prefixIcon is not supported by FTextField 0.1.0, so we only map suffix to suffixIcon
-        suffixIcon: Stac.fromJson(model.suffix, context),
-        obscureText: model.obscureText,
+      control: FTextFieldControl.managed(
         onChange: model.onChange != null
             ? (value) => Stac.onCallFromJson(model.onChange, context)
             : null,
-        onSubmit: model.onSubmit != null
-            ? (value) => Stac.onCallFromJson(model.onSubmit, context)
-            : null,
       ),
+      label: model.label != null ? Text(model.label!) : null,
+      description:
+          model.description != null ? Text(model.description!) : null,
+      hint: model.hint,
+      error: model.error != null ? Text(model.error!) : null,
+      prefixBuilder: prefix != null
+          ? (context, style, variants) => FTextField.prefixIconBuilder(context, style, variants, prefix)
+          : null,
+      suffixBuilder: suffix != null
+          ? (context, style, variants) => Padding(
+                padding: const EdgeInsetsDirectional.only(start: 4.0, end: 12.0),
+                child: IconTheme(data: style.iconStyle.resolve(variants), child: suffix),
+              )
+          : null,
+      obscureText: model.obscureText,
+      onSubmit: model.onSubmit != null
+          ? (value) => Stac.onCallFromJson(model.onSubmit, context)
+          : null,
     );
   }
 }

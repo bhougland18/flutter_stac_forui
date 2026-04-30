@@ -1,3 +1,4 @@
+import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:forui/forui.dart';
 import 'package:json_annotation/json_annotation.dart';
@@ -45,16 +46,18 @@ class StacForuiScaffoldStyle {
   FScaffoldStyle toFScaffoldStyle(BuildContext context) {
     final theme = FTheme.of(context);
     final inherited = FScaffoldStyle.inherit(
-      colorScheme: theme.colorScheme,
+      colors: theme.colors,
       style: theme.style,
     );
 
     return FScaffoldStyle(
       backgroundColor: backgroundColor?.toColor(inherited.backgroundColor) ??
           inherited.backgroundColor,
-      contentPadding: inherited.contentPadding,
-      headerDecoration: inherited.headerDecoration,
+      sidebarBackgroundColor: inherited.sidebarBackgroundColor,
+      childPadding: inherited.childPadding,
       footerDecoration: inherited.footerDecoration,
+      headerDecoration: inherited.headerDecoration,
+      systemOverlayStyle: inherited.systemOverlayStyle,
     );
   }
 }

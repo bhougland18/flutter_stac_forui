@@ -15,16 +15,20 @@ class StacForuiButtonParser extends StacParser<StacForuiButton> {
 
   @override
   Widget parse(BuildContext context, StacForuiButton model) {
+    final Widget? labelWidget = model.label != null
+        ? Text(model.label!)
+        : Stac.fromJson(model.rawLabel, context);
+
     return FButton(
       key: model.key != null ? ValueKey<String>(model.key!) : null,
-      label: model.label,
-      rawLabel: Stac.fromJson(model.rawLabel, context),
-      prefixIcon: Stac.fromJson(model.prefixIcon, context),
-      suffixIcon: Stac.fromJson(model.suffixIcon, context),
-      style: model.style.toFButtonStyle,
+      variant: model.style.toFButtonVariant,
+      size: model.size.toFButtonSizeVariant,
+      prefix: Stac.fromJson(model.prefixIcon, context),
+      suffix: Stac.fromJson(model.suffixIcon, context),
       onPress: model.onPress != null
           ? () => Stac.onCallFromJson(model.onPress, context)
           : null,
+      child: labelWidget,
     );
   }
 }

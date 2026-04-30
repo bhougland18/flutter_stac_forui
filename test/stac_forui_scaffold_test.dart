@@ -9,11 +9,8 @@ void main() {
       'type': 'forui_scaffold',
       'key': 'my_scaffold_id',
       'content': {
-        'type': 'container',
-        'child': {
-          'type': 'text',
-          'data': 'Hello, STAC!',
-        },
+        'type': 'text',
+        'data': 'Hello, STAC!',
       },
     };
 

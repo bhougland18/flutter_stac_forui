@@ -1,5 +1,3 @@
-import 'package:flutter/widgets.dart';
-import 'package:forui/forui.dart';
 import 'package:json_annotation/json_annotation.dart';
 import 'package:stac/stac.dart';
 
@@ -11,12 +9,14 @@ class StacForuiHeader extends StacWidget {
     this.key,
     this.title,
     this.rawTitle,
+    this.suffixes,
     this.actions,
   });
 
   final String? key;
   final String? title;
   final Map<String, dynamic>? rawTitle;
+  final List<Map<String, dynamic>>? suffixes;
   final List<Map<String, dynamic>>? actions;
 
   factory StacForuiHeader.fromJson(Map<String, dynamic> json) =>

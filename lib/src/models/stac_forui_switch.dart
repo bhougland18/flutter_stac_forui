@@ -11,6 +11,7 @@ class StacForuiSwitch extends StacWidget {
     this.description,
     this.value = false,
     this.enabled = true,
+    this.onChange,
     this.onChanged,
     this.semanticLabel,
   });
@@ -20,6 +21,7 @@ class StacForuiSwitch extends StacWidget {
   final String? description;
   final bool value;
   final bool enabled;
+  final Map<String, dynamic>? onChange;
   final Map<String, dynamic>? onChanged;
   final String? semanticLabel;
 

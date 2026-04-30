@@ -15,11 +15,14 @@ class StacForuiHeaderParser extends StacParser<StacForuiHeader> {
 
   @override
   Widget parse(BuildContext context, StacForuiHeader model) {
+    final title = model.title != null
+        ? Text(model.title!)
+        : Stac.fromJson(model.rawTitle, context);
+
     return FHeader(
       key: model.key != null ? ValueKey(model.key) : null,
-      title: model.title,
-      rawTitle: Stac.fromJson(model.rawTitle, context),
-      actions: model.actions
+      title: title ?? const SizedBox.shrink(),
+      suffixes: (model.suffixes ?? model.actions)
               ?.map((e) => Stac.fromJson(e, context))
               .whereType<Widget>()
               .toList() ??

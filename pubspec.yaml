@@ -11,7 +11,7 @@ dependencies:
   flutter:
     sdk: flutter
   stac: ^1.4.0
-  forui: ^0.1.0
+  forui: ^0.21.2
   json_annotation: ^4.9.0
 
 dev_dependencies:

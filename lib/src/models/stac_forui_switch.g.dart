@@ -13,6 +13,7 @@ StacForuiSwitch _$StacForuiSwitchFromJson(Map<String, dynamic> json) =>
       description: json['description'] as String?,
       value: json['value'] as bool? ?? false,
       enabled: json['enabled'] as bool? ?? true,
+      onChange: json['onChange'] as Map<String, dynamic>?,
       onChanged: json['onChanged'] as Map<String, dynamic>?,
       semanticLabel: json['semanticLabel'] as String?,
     );
@@ -25,6 +26,7 @@ Map<String, dynamic> _$StacForuiSwitchToJson(StacForuiSwitch instance) =>
       'description': instance.description,
       'value': instance.value,
       'enabled': instance.enabled,
+      'onChange': instance.onChange,
       'onChanged': instance.onChanged,
       'semanticLabel': instance.semanticLabel,
     };

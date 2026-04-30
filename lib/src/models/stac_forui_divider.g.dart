@@ -1,15 +1,15 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'stac_forui_separator.dart';
+part of 'stac_forui_divider.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-StacForuiSeparator _$StacForuiSeparatorFromJson(Map<String, dynamic> json) =>
-    StacForuiSeparator(
+StacForuiDivider _$StacForuiDividerFromJson(Map<String, dynamic> json) =>
+    StacForuiDivider(
       key: json['key'] as String?,
-      vertical: json['vertical'] as bool? ?? false,
+      axis: $enumDecodeNullable(_$AxisEnumMap, json['axis']) ?? Axis.horizontal,
       color: json['color'] as String?,
       width: (json['width'] as num?)?.toDouble(),
       padding: json['padding'] == null
@@ -17,12 +17,17 @@ StacForuiSeparator _$StacForuiSeparatorFromJson(Map<String, dynamic> json) =>
           : StacEdgeInsets.fromJson(json['padding']),
     );
 
-Map<String, dynamic> _$StacForuiSeparatorToJson(StacForuiSeparator instance) =>
+Map<String, dynamic> _$StacForuiDividerToJson(StacForuiDivider instance) =>
     <String, dynamic>{
       'type': instance.type,
       'key': instance.key,
-      'vertical': instance.vertical,
+      'axis': _$AxisEnumMap[instance.axis]!,
       'color': instance.color,
       'width': instance.width,
       'padding': instance.padding,
     };
+
+const _$AxisEnumMap = {
+  Axis.horizontal: 'horizontal',
+  Axis.vertical: 'vertical',
+};

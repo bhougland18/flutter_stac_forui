@@ -11,6 +11,9 @@ StacForuiHeader _$StacForuiHeaderFromJson(Map<String, dynamic> json) =>
       key: json['key'] as String?,
       title: json['title'] as String?,
       rawTitle: json['rawTitle'] as Map<String, dynamic>?,
+      suffixes: (json['suffixes'] as List<dynamic>?)
+          ?.map((e) => e as Map<String, dynamic>)
+          .toList(),
       actions: (json['actions'] as List<dynamic>?)
           ?.map((e) => e as Map<String, dynamic>)
           .toList(),
@@ -22,5 +25,6 @@ Map<String, dynamic> _$StacForuiHeaderToJson(StacForuiHeader instance) =>
       'key': instance.key,
       'title': instance.title,
       'rawTitle': instance.rawTitle,
+      'suffixes': instance.suffixes,
       'actions': instance.actions,
     };

@@ -213,27 +213,21 @@
     },
     {
       "name": "forui",
-      "rootUri": "file:///home/ben/.pub-cache/hosted/pub.dev/forui-0.1.0",
+      "rootUri": "file:///home/ben/.pub-cache/hosted/pub.dev/forui-0.21.2",
       "packageUri": "lib/",
-      "languageVersion": "3.3"
+      "languageVersion": "3.11"
     },
     {
       "name": "forui_assets",
-      "rootUri": "file:///home/ben/.pub-cache/hosted/pub.dev/forui_assets-0.1.0",
+      "rootUri": "file:///home/ben/.pub-cache/hosted/pub.dev/forui_assets-0.21.0",
       "packageUri": "lib/",
-      "languageVersion": "3.4"
+      "languageVersion": "3.10"
     },
     {
       "name": "glob",
       "rootUri": "file:///home/ben/.pub-cache/hosted/pub.dev/glob-2.1.3",
       "packageUri": "lib/",
       "languageVersion": "3.3"
-    },
-    {
-      "name": "google_fonts",
-      "rootUri": "file:///home/ben/.pub-cache/hosted/pub.dev/google_fonts-6.3.3",
-      "packageUri": "lib/",
-      "languageVersion": "3.9"
     },
     {
       "name": "graphs",
@@ -288,12 +282,6 @@
       "rootUri": "file:///home/ben/.pub-cache/hosted/pub.dev/jni_flutter-1.0.1",
       "packageUri": "lib/",
       "languageVersion": "3.3"
-    },
-    {
-      "name": "js",
-      "rootUri": "file:///home/ben/.pub-cache/hosted/pub.dev/js-0.6.7",
-      "packageUri": "lib/",
-      "languageVersion": "2.19"
     },
     {
       "name": "json_annotation",
@@ -375,9 +363,9 @@
     },
     {
       "name": "nitrogen_types",
-      "rootUri": "file:///home/ben/.pub-cache/hosted/pub.dev/nitrogen_types-0.2.0+1",
+      "rootUri": "file:///home/ben/.pub-cache/hosted/pub.dev/nitrogen_types-0.4.0+1",
       "packageUri": "lib/",
-      "languageVersion": "3.3"
+      "languageVersion": "3.6"
     },
     {
       "name": "objective_c",
@@ -651,9 +639,9 @@
     },
     {
       "name": "sugar",
-      "rootUri": "file:///home/ben/.pub-cache/hosted/pub.dev/sugar-3.1.0",
+      "rootUri": "file:///home/ben/.pub-cache/hosted/pub.dev/sugar-4.0.0",
       "packageUri": "lib/",
-      "languageVersion": "3.0"
+      "languageVersion": "3.6"
     },
     {
       "name": "synchronized",
