@@ -28,6 +28,8 @@ class StacForuiButtonParser extends StacParser<StacForuiButton> {
       onPress: model.onPress != null
           ? () => Stac.onCallFromJson(model.onPress, context)
           : null,
+      style: model.styleOverride?.toFButtonStyleDelta(context) ??
+          const FButtonStyleDelta.context(),
       child: labelWidget,
     );
   }

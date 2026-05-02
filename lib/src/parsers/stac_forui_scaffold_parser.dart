@@ -21,13 +21,8 @@ class StacForuiScaffoldParser extends StacParser<StacForuiScaffold> {
       header: Stac.fromJson(model.header, context),
       child: Stac.fromJson(model.content, context) ?? const SizedBox.shrink(),
       footer: Stac.fromJson(model.footer, context),
-      scaffoldStyle: model.style != null
-          ? FScaffoldStyleDelta.delta(
-              backgroundColor: model.style!.backgroundColor?.toColor(
-                FTheme.of(context).colors.background,
-              ),
-            )
-          : const FScaffoldStyleDelta.context(),
+      scaffoldStyle: model.style?.toFScaffoldStyleDelta(context) ??
+          const FScaffoldStyleDelta.context(),
     );
   }
 }

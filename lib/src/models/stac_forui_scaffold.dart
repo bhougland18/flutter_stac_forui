@@ -34,30 +34,28 @@ class StacForuiScaffold extends StacWidget {
 class StacForuiScaffoldStyle {
   const StacForuiScaffoldStyle({
     this.backgroundColor,
+    this.sidebarBackgroundColor,
+    this.childPadding,
   });
 
   final String? backgroundColor;
+  final String? sidebarBackgroundColor;
+  final Map<String, dynamic>? childPadding;
 
   factory StacForuiScaffoldStyle.fromJson(Map<String, dynamic> json) =>
       _$StacForuiScaffoldStyleFromJson(json);
 
   Map<String, dynamic> toJson() => _$StacForuiScaffoldStyleToJson(this);
 
-  FScaffoldStyle toFScaffoldStyle(BuildContext context) {
-    final theme = FTheme.of(context);
-    final inherited = FScaffoldStyle.inherit(
-      colors: theme.colors,
-      style: theme.style,
-    );
-
-    return FScaffoldStyle(
-      backgroundColor: backgroundColor?.toColor(inherited.backgroundColor) ??
-          inherited.backgroundColor,
-      sidebarBackgroundColor: inherited.sidebarBackgroundColor,
-      childPadding: inherited.childPadding,
-      footerDecoration: inherited.footerDecoration,
-      headerDecoration: inherited.headerDecoration,
-      systemOverlayStyle: inherited.systemOverlayStyle,
+  FScaffoldStyleDelta toFScaffoldStyleDelta(BuildContext context) {
+    return FScaffoldStyleDelta.delta(
+      backgroundColor: backgroundColor?.toColor(),
+      sidebarBackgroundColor: sidebarBackgroundColor?.toColor(),
+      childPadding: childPadding != null
+          ? EdgeInsetsGeometryDelta.value(
+              StacEdgeInsets.fromJson(childPadding)!.parse,
+            )
+          : null,
     );
   }
 }

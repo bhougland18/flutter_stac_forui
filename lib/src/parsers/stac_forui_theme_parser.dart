@@ -17,8 +17,9 @@ class StacForuiThemeParser extends StacParser<StacForuiTheme> {
   Widget parse(BuildContext context, StacForuiTheme model) {
     final parentData = FTheme.of(context);
     final colors = model.colors?.toFColors() ?? parentData.colors;
-    final typography = parentData.typography; // TODO: Support typography parsing
-    final style = parentData.style;
+    final typography =
+        model.typography?.toFTypography(context, colors) ?? parentData.typography;
+    final style = model.style?.toFStyle(colors, typography) ?? parentData.style;
 
     return FTheme(
       data: FThemeData(

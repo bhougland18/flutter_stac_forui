@@ -31,9 +31,16 @@ Map<String, dynamic> _$StacForuiScaffoldToJson(StacForuiScaffold instance) =>
 
 StacForuiScaffoldStyle _$StacForuiScaffoldStyleFromJson(
   Map<String, dynamic> json,
-) =>
-    StacForuiScaffoldStyle(backgroundColor: json['backgroundColor'] as String?);
+) => StacForuiScaffoldStyle(
+  backgroundColor: json['backgroundColor'] as String?,
+  sidebarBackgroundColor: json['sidebarBackgroundColor'] as String?,
+  childPadding: json['childPadding'] as Map<String, dynamic>?,
+);
 
 Map<String, dynamic> _$StacForuiScaffoldStyleToJson(
   StacForuiScaffoldStyle instance,
-) => <String, dynamic>{'backgroundColor': instance.backgroundColor};
+) => <String, dynamic>{
+  'backgroundColor': instance.backgroundColor,
+  'sidebarBackgroundColor': instance.sidebarBackgroundColor,
+  'childPadding': instance.childPadding,
+};

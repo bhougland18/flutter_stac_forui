@@ -13,6 +13,9 @@ StacForuiTheme _$StacForuiThemeFromJson(Map<String, dynamic> json) =>
           : StacForuiTypography.fromJson(
               json['typography'] as Map<String, dynamic>,
             ),
+      style: json['style'] == null
+          ? null
+          : StacForuiStyle.fromJson(json['style'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$StacForuiThemeToJson(StacForuiTheme instance) =>
@@ -21,6 +24,21 @@ Map<String, dynamic> _$StacForuiThemeToJson(StacForuiTheme instance) =>
       'child': instance.child,
       'colors': instance.colors,
       'typography': instance.typography,
+      'style': instance.style,
+    };
+
+StacForuiStyle _$StacForuiStyleFromJson(Map<String, dynamic> json) =>
+    StacForuiStyle(
+      borderRadius: (json['borderRadius'] as num?)?.toDouble(),
+      borderWidth: (json['borderWidth'] as num?)?.toDouble(),
+      touch: json['touch'] as bool? ?? true,
+    );
+
+Map<String, dynamic> _$StacForuiStyleToJson(StacForuiStyle instance) =>
+    <String, dynamic>{
+      'borderRadius': instance.borderRadius,
+      'borderWidth': instance.borderWidth,
+      'touch': instance.touch,
     };
 
 StacForuiColors _$StacForuiColorsFromJson(Map<String, dynamic> json) =>
@@ -74,8 +92,42 @@ const _$StacForuiBrightnessEnumMap = {
 };
 
 StacForuiTypography _$StacForuiTypographyFromJson(Map<String, dynamic> json) =>
-    StacForuiTypography(fontFamily: json['fontFamily'] as String?);
+    StacForuiTypography(
+      fontFamily: json['fontFamily'] as String?,
+      touch: json['touch'] as bool? ?? true,
+      xs3: json['xs3'] as Map<String, dynamic>?,
+      xs2: json['xs2'] as Map<String, dynamic>?,
+      xs: json['xs'] as Map<String, dynamic>?,
+      sm: json['sm'] as Map<String, dynamic>?,
+      md: json['md'] as Map<String, dynamic>?,
+      lg: json['lg'] as Map<String, dynamic>?,
+      xl: json['xl'] as Map<String, dynamic>?,
+      xl2: json['xl2'] as Map<String, dynamic>?,
+      xl3: json['xl3'] as Map<String, dynamic>?,
+      xl4: json['xl4'] as Map<String, dynamic>?,
+      xl5: json['xl5'] as Map<String, dynamic>?,
+      xl6: json['xl6'] as Map<String, dynamic>?,
+      xl7: json['xl7'] as Map<String, dynamic>?,
+      xl8: json['xl8'] as Map<String, dynamic>?,
+    );
 
 Map<String, dynamic> _$StacForuiTypographyToJson(
   StacForuiTypography instance,
-) => <String, dynamic>{'fontFamily': instance.fontFamily};
+) => <String, dynamic>{
+  'fontFamily': instance.fontFamily,
+  'touch': instance.touch,
+  'xs3': instance.xs3,
+  'xs2': instance.xs2,
+  'xs': instance.xs,
+  'sm': instance.sm,
+  'md': instance.md,
+  'lg': instance.lg,
+  'xl': instance.xl,
+  'xl2': instance.xl2,
+  'xl3': instance.xl3,
+  'xl4': instance.xl4,
+  'xl5': instance.xl5,
+  'xl6': instance.xl6,
+  'xl7': instance.xl7,
+  'xl8': instance.xl8,
+};

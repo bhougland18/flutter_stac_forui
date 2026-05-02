@@ -16,6 +16,7 @@ class StacForuiButton extends StacWidget {
     this.onPress,
     this.style = StacForuiButtonStyle.primary,
     this.size = StacForuiButtonSize.md,
+    this.styleOverride,
   });
 
   final String? key;
@@ -26,12 +27,39 @@ class StacForuiButton extends StacWidget {
   final Map<String, dynamic>? onPress;
   final StacForuiButtonStyle style;
   final StacForuiButtonSize size;
+  final StacForuiButtonStyleOverride? styleOverride;
 
   factory StacForuiButton.fromJson(Map<String, dynamic> json) =>
       _$StacForuiButtonFromJson(json);
 
   @override
   Map<String, dynamic> toJson() => _$StacForuiButtonToJson(this);
+}
+
+@JsonSerializable()
+class StacForuiButtonStyleOverride {
+  const StacForuiButtonStyleOverride({
+    this.contentPadding,
+  });
+
+  final Map<String, dynamic>? contentPadding;
+
+  factory StacForuiButtonStyleOverride.fromJson(Map<String, dynamic> json) =>
+      _$StacForuiButtonStyleOverrideFromJson(json);
+
+  Map<String, dynamic> toJson() => _$StacForuiButtonStyleOverrideToJson(this);
+
+  FButtonStyleDelta toFButtonStyleDelta(BuildContext context) {
+    return FButtonStyleDelta.delta(
+      contentStyle: contentPadding != null
+          ? FButtonContentStyleDelta.delta(
+              padding: EdgeInsetsGeometryDelta.value(
+                StacEdgeInsets.fromJson(contentPadding)!.parse,
+              ),
+            )
+          : null,
+    );
+  }
 }
 
 enum StacForuiButtonStyle {

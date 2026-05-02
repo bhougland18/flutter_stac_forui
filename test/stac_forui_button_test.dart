@@ -70,4 +70,50 @@ void main() {
 
     expect(actionTriggered, isTrue);
   });
+
+  testWidgets('StacForuiButton supports style overrides', (WidgetTester tester) async {
+    final Map<String, dynamic> buttonJson = {
+      'type': 'forui_button',
+      'label': 'Custom Padding Button',
+      'styleOverride': {
+        'contentPadding': {'left': 32.0, 'right': 32.0, 'top': 16.0, 'bottom': 16.0},
+      },
+    };
+
+    // Register parsers
+    Stac.initialize(parsers: [
+      const StacForuiButtonParser(),
+    ]);
+
+    await tester.pumpWidget(
+      FTheme(
+        data: FThemeData(
+          colors: FColors.neutralLight,
+          typography: FTypography.inherit(colors: FColors.neutralLight, touch: true),
+          style: FStyle.inherit(
+            colors: FColors.neutralLight,
+            typography: FTypography.inherit(colors: FColors.neutralLight, touch: true),
+            touch: true,
+          ),
+          touch: true,
+        ),
+        child: MaterialApp(
+          home: Scaffold(
+            body: Builder(builder: (context) {
+              return Stac.fromJson(buttonJson, context) ?? const SizedBox.shrink();
+            }),
+          ),
+        ),
+      ),
+    );
+
+    final button = tester.widget<FButton>(find.byType(FButton));
+    
+    // Check if the style override made it into the widget
+    // In forui 0.21.2, FButton.style is the FButtonStyleDelta we passed
+    final styleDelta = button.style as dynamic;
+    final padding = styleDelta.contentStyle.padding(EdgeInsets.zero) as EdgeInsets;
+    expect(padding.left, 32.0);
+    expect(padding.top, 16.0);
+  });
 }

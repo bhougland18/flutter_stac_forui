@@ -20,6 +20,11 @@ StacForuiButton _$StacForuiButtonFromJson(Map<String, dynamic> json) =>
       size:
           $enumDecodeNullable(_$StacForuiButtonSizeEnumMap, json['size']) ??
           StacForuiButtonSize.md,
+      styleOverride: json['styleOverride'] == null
+          ? null
+          : StacForuiButtonStyleOverride.fromJson(
+              json['styleOverride'] as Map<String, dynamic>,
+            ),
     );
 
 Map<String, dynamic> _$StacForuiButtonToJson(StacForuiButton instance) =>
@@ -33,6 +38,7 @@ Map<String, dynamic> _$StacForuiButtonToJson(StacForuiButton instance) =>
       'onPress': instance.onPress,
       'style': _$StacForuiButtonStyleEnumMap[instance.style]!,
       'size': _$StacForuiButtonSizeEnumMap[instance.size]!,
+      'styleOverride': instance.styleOverride,
     };
 
 const _$StacForuiButtonStyleEnumMap = {
@@ -49,3 +55,13 @@ const _$StacForuiButtonSizeEnumMap = {
   StacForuiButtonSize.md: 'md',
   StacForuiButtonSize.lg: 'lg',
 };
+
+StacForuiButtonStyleOverride _$StacForuiButtonStyleOverrideFromJson(
+  Map<String, dynamic> json,
+) => StacForuiButtonStyleOverride(
+  contentPadding: json['contentPadding'] as Map<String, dynamic>?,
+);
+
+Map<String, dynamic> _$StacForuiButtonStyleOverrideToJson(
+  StacForuiButtonStyleOverride instance,
+) => <String, dynamic>{'contentPadding': instance.contentPadding};
